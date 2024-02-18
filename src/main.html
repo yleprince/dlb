@@ -1,0 +1,231 @@
+<DOCTYPE? html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="/assets/dlb-small.png">
+        <link rel="apple-touch-icon" href="/assets/dlb-small.png">
+        <title>Dlb-granulat</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+    </head>
+    <body>
+        <div class="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+            <div class="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
+                <div class="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"></div>
+            </div>
+            <div class="absolute left-[max(45rem,calc(50%+8rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl" aria-hidden="true">
+                <div class="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30" style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)"></div>
+            </div>
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <p class="text-sm leading-6 text-gray-900">
+                <strong class="font-semibold">DLB granulat Demo</strong><svg viewBox="0 0 2 2" class="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true"><circle cx="1" cy="1" r="1" /></svg>Yrieix Leprince<svg viewBox="0 0 2 2" class="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true"><circle cx="1" cy="1" r="1" /></svg><strong class="font-semibold">yrieix.leprince@gmail.com</strong>
+                </p>
+            </div>
+            <div class="flex flex-1 justify-end">
+                <button type="button" class="-m-3 p-3 focus-visible:outline-offset-[-4px]">
+                    <span class="sr-only">Dismiss</span>
+                    <svg class="h-5 w-5 text-gray-900" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+
+        <nav class="bg-primary border-b border-red-500">
+            <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                <div class="relative flex h-16 items-center justify-between">
+                    <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                        <!-- Mobile menu button-->
+                        <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-blue-950 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                            <span class="absolute -inset-0.5"></span>
+                            <span class="sr-only">Open main menu</span>
+                            <!--
+                                Icon when menu is closed.
+
+                                Menu open: "hidden", Menu closed: "block"
+                            -->
+                            <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                            <!--
+                                Icon when menu is open.
+
+                                Menu open: "block", Menu closed: "hidden"
+                            -->
+                            <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                        <div class="flex flex-shrink-0 items-center">
+                            <img class="h-8 w-auto" src="/assets/dlb-small.png" alt="DLB granulats">
+                        </div>
+                        <div class="hidden sm:ml-6 sm:block">
+                            <div class="flex space-x-4">
+                                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                                <a href="#" class="bg-blue-950 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Accueil</a>
+                                <a href="#" class="text-blue-950 hover:bg-blue-950 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Plus d'infos</a>
+                                <a href="#" class="text-blue-950 hover:bg-blue-950 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Produits et Services</a>
+                                <a href="#" class="text-blue-950 hover:bg-blue-950 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Actualités</a>
+                                <a href="#" class="text-blue-950 hover:bg-blue-950 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Nous Contacter</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile menu, show/hide based on menu state. -->
+            <div class="sm:hidden" id="mobile-menu">
+                <div class="space-y-1 px-2 pb-3 pt-2">
+                    <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                    <a href="#" class="bg-blue-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Accueil</a>
+                    <a href="#" class="text-blue-900 hover:bg-blue-900 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Plus d'infos</a>
+                    <a href="#" class="text-blue-900 hover:bg-blue-900 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Produits et Services</a>
+                    <a href="#" class="text-blue-900 hover:bg-blue-900 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Actualités</a>
+                    <a href="#" class="text-blue-900 hover:bg-blue-900 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Nous Contacter</a>
+                </div>
+            </div>
+        </nav>
+        <div class="space-y-0"></div>
+        <div class="container mx-auto px-4">
+            <header class="bg-white">
+                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl font-bold tracking-tight text-blue-900">Des matériaux pour donner vie à vos projets</h1>
+                </div>
+                <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                    <p>Depuis 1985, DLB est votre partenaire <a class="underline decoration-red-500">incontournable</a> pour garantir la réussite de votre projet.</p>
+                </div>
+            </header>
+
+            <!-- Map -->
+            <div class="py-6">
+                <div class="rounded shadow-lg transition ease-in-out duration-500 hover:rounded-xl transition ease-in-out duration-500 hover:shadow-2xl" id="map" style="width: 100%; height: 500px;"></div>
+            </div>
+            
+            <!-- Divider -->
+            <hr class="my-12 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:opacity-100" />
+
+            <!-- Gallery -->
+            <div class="grid grid-flow-col grid-rows-2 grid-cols-3 gap-8">
+                <div>
+                    <img class="rounded transition ease-in-out hover:scale-105 hover:shadow-xl" src="/assets/sable-bonneuil.jpeg" alt="Sable de Bonneuil-sur-Marne" loading="lazy">
+                </div>
+                <div class="col-start-3">
+                    <img class="rounded transition ease-in-out hover:scale-105 hover:shadow-xl" src="/assets/granulat-bonneuil.jpeg" alt="Granulats de Bonneuil" loading="lazy">
+                </div>
+                <div>
+                    <img class="rounded transition ease-in-out hover:scale-105 hover:shadow-xl" src="/assets/granulats.jpeg" alt="Granulats" loading="lazy">
+                </div>
+                <div>
+                    <img class="rounded transition ease-in-out hover:scale-105 hover:shadow-xl" src="/assets/mixte-recompose.jpeg" alt="Mixte Recompose" loading="lazy">
+                </div>
+                <div class="row-start-1 col-start-2 col-span-2">
+                    <img class="rounded transition ease-in-out hover:scale-105 hover:shadow-xl" src="/assets/tapis-roulants.jpeg" alt="" loading="lazy">
+                </div>
+            </div>
+
+        </div>
+
+         </body>
+    <script>
+
+        const accessToken = 'pk.eyJ1IjoieXJpZWl4IiwiYSI6ImNsc3J6ZW9hMjBqa2YycnMwMmhkaXY0bHQifQ.QtR_jFBuX04GFbnmot7yEg';
+
+        const tilesStreet = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token=' + accessToken, {
+            attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            tileSize: 512,
+            zoomOffset: -1
+        });
+
+        const tilesSatellite = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/{z}/{x}/{y}?access_token=' + accessToken, {
+            attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            tileSize: 512,
+            zoomOffset: -1
+        });
+
+        const tileStyles = {
+            "Plan": tilesStreet,
+            "Satellite": tilesSatellite
+        };
+
+        const dlbIcon = L.icon({
+            iconUrl: '/assets/dlb-marker.png', //200x67
+            iconSize:     [100, 33], // size of the icon
+            iconAnchor:   [100, 33], // point of the icon which will correspond to marker's location
+            popupAnchor:  [-50, -33] // point from which the popup should open relative to the iconAnchor
+        });
+
+        const dlbIconRight = L.icon({
+            iconUrl: '/assets/dlb-marker-right.png', // 200x73
+            iconSize:     [100, 36], // size of the icon
+            iconAnchor:   [0, 36], // point of the icon which will correspond to marker's location
+            popupAnchor:  [50, -36] // point from which the popup should open relative to the iconAnchor
+        });
+
+        const dlbIconBottom = L.icon({
+            iconUrl: '/assets/dlb-marker-bottom.png', // 206x69
+            iconSize:     [103, 34], // size of the icon
+            iconAnchor:   [103, 0], // point of the icon which will correspond to marker's location
+            popupAnchor:  [51, 0] // point from which the popup should open relative to the iconAnchor
+        });
+
+        const markersData = [{
+            "title": "DLB Siège",
+            "address": "10 Carrefour Charles de Gaulle, 94380 Bonneuil-sur-Marne",
+            "lat": 48.76818647898846, 
+            "lng": 2.4867692824175784,
+            "icon": dlbIconRight
+        },{
+            "title": "Centre de recyclage",
+            "address": "Voie de Liaison RD 110 La Plage Bleue, 94450 Limeil-Brévannes",
+            "lat": 48.75490285682215,
+            "lng": 2.4683234422715117,
+            "icon": dlbIconBottom
+        },{
+            "title": "Centre de recyclage",
+            "address": "Chemin des Postes RN 370 ZAC des Tulipes Nord, 95500 Gonesse",
+            "lat": 48.96430275566252,
+            "lng": 2.466383974760414,
+            "icon": dlbIcon
+        },{
+            "title": "Piketty",
+            "address": "19 Rue Georges Villette, 77250 Écuelles",
+            "lat": 48.35697648493405,
+            "lng": 2.8243192642272037,
+            "icon": dlbIcon
+        },{
+            "title": "Centre de recyclage",
+            "address": "Quai des Veuves, 89140 Pont-sur-Yonne",
+            "lat": 48.295307843006256,
+            "lng": 3.2030360157613935,
+            "icon": dlbIcon
+        }]
+
+        const markers = L.layerGroup(
+            markersData.map(marker => {
+                const address = marker.address.split(",").join("<br />")
+                const popupContent = `
+                    <b>${marker.title}</b><br />
+                    ${address}
+                `;
+                return L.marker([marker.lat, marker.lng], {icon: marker.icon})
+                    .bindPopup(popupContent);
+            }));
+
+        const map = L.map('map', {layers: [tilesStreet, markers]})
+            .setView([48.680601421694156, 2.745480675466544], 9);
+
+        var layerControl = L.control.layers(tileStyles).addTo(map);
+
+
+    </script>
+
+
+</html>
